@@ -59,9 +59,17 @@ class _WeatherAppPageState extends State<WeatherAppPage> {
               },
             ),
           ),
-          body: TabBarView(
-            children: _getBodyWidgets(_locationError, context),
-          ),
+          body: Stack(children: [
+            Opacity(
+              opacity: 0.3,
+              child: FittedBox(
+                  fit: BoxFit.cover,
+                  child: Image.asset('assets/app_background.jpg')),
+            ),
+            TabBarView(
+              children: _getBodyWidgets(_locationError, context),
+            ),
+          ]),
           bottomNavigationBar: const WeatherBottomNavigationBar(),
         ));
   }
