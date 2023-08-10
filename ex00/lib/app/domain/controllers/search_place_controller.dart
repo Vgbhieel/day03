@@ -48,7 +48,7 @@ class SearchPlaceController {
   Future<List<Place>> _getPlacesList(String query, {int? count}) async {
     final queryParameters = {
       'name': query,
-      'count': '${count ?? 10}',
+      'count': '${count ?? 5}',
       'language': 'pt',
       'format': 'json',
     };

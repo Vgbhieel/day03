@@ -96,7 +96,27 @@ class _WeatherPlaceSearchAutocompleteState
               itemBuilder: (context, index) {
                 Place item = mOptions[index];
                 return ListTile(
-                  title: Text(buildDisplayString(item)),
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                        child: Icon(Icons.location_city),
+                      ),
+                      Expanded(
+                        child: Text.rich(
+                          TextSpan(
+                            text: (item.region != null || item.country != null)
+                                ? '${item.name}, '
+                                : item.name,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                            children: _getTextSpanItems(item),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                   onTap: () {
                     onSelected.call(item);
                     FocusScope.of(context).unfocus();
@@ -107,6 +127,33 @@ class _WeatherPlaceSearchAutocompleteState
       },
       onSelected: widget._onSuggestionSelected,
     );
+  }
+
+  List<TextSpan> _getTextSpanItems(Place place) {
+    List<TextSpan> list = [];
+
+    String regionData = "";
+
+    if (place.region != null) {
+      regionData = place.region!;
+    }
+    if (place.country != null) {
+      if (place.region != null) {
+        regionData = "$regionData, ${place.country}";
+      } else {
+        regionData = place.country!;
+      }
+    }
+
+    if (regionData.isNotEmpty) {
+      list.add(
+        TextSpan(
+            text: regionData,
+            style: const TextStyle(fontWeight: FontWeight.normal)),
+      );
+    }
+
+    return list;
   }
 
   String buildDisplayString(Place option) {
