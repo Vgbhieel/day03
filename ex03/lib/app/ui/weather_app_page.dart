@@ -100,8 +100,10 @@ class _WeatherAppPageState extends State<WeatherAppPage> {
               place: _selectedPlace!,
             ),
           ),
-          TodayWeatherPage(
-            place: _selectedPlace!,
+          SingleChildScrollView(
+            child: TodayWeatherPage(
+              place: _selectedPlace!,
+            ),
           ),
           WeeklyWeatherPage(
             place: _selectedPlace!,
