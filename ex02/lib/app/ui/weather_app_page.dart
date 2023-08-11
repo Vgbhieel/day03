@@ -95,8 +95,10 @@ class _WeatherAppPageState extends State<WeatherAppPage> {
     } else {
       if (_selectedPlace != null) {
         return <Widget>[
-          CurrentWeatherPage(
-            place: _selectedPlace!,
+          SingleChildScrollView(
+            child: CurrentWeatherPage(
+              place: _selectedPlace!,
+            ),
           ),
           TodayWeatherPage(
             place: _selectedPlace!,
