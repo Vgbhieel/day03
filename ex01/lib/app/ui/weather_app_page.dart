@@ -64,7 +64,7 @@ class _WeatherAppPageState extends State<WeatherAppPage> {
               width: double.infinity,
               height: double.infinity,
               child: Opacity(
-                opacity: 0.3,
+                opacity: 0.2,
                 child: FittedBox(
                     fit: BoxFit.cover,
                     child: Image.asset('assets/app_background.jpg')),
