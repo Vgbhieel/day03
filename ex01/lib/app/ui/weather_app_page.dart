@@ -1,10 +1,10 @@
 import 'package:ex00/app/domain/controllers/get_location_controller.dart';
 import 'package:ex00/app/domain/models/place.dart';
+import 'package:ex00/app/ui/current_weather_page.dart';
 import 'package:ex00/app/ui/today_weather_page.dart';
 import 'package:ex00/app/ui/weekly_weather_page.dart';
 import 'package:ex00/app/ui/widget/weather_app_bar.dart';
 import 'package:ex00/app/ui/widget/weather_bottom_navigation_bar.dart';
-import 'package:ex00/app/ui/current_weather_page.dart';
 import 'package:flutter/material.dart';
 
 class WeatherAppPage extends StatefulWidget {
@@ -60,11 +60,15 @@ class _WeatherAppPageState extends State<WeatherAppPage> {
             ),
           ),
           body: Stack(children: [
-            Opacity(
-              opacity: 0.3,
-              child: FittedBox(
-                  fit: BoxFit.cover,
-                  child: Image.asset('assets/app_background.jpg')),
+            SizedBox(
+              width: double.infinity,
+              height: double.infinity,
+              child: Opacity(
+                opacity: 0.3,
+                child: FittedBox(
+                    fit: BoxFit.cover,
+                    child: Image.asset('assets/app_background.jpg')),
+              ),
             ),
             TabBarView(
               children: _getBodyWidgets(_locationError, context),
